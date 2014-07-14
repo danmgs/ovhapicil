@@ -9,7 +9,8 @@ namespace OVHApi.testapp
 	{
 		public static void Main(string[] args)
 		{
-			OvhApiClient api = new OvhApiClient("YOUR_APPLICATION_KEY", "YOUR_APPLICATION_SECRET", OvhInfra.Europe);
+			// OvhApiClient api = new OvhApiClient("YOUR_APPLICATION_KEY", "YOUR_APPLICATION_SECRET", OvhInfra.Europe);
+            OvhApiClient api = new OvhApiClient("cRAoen1aVhylH6CK", "U6RTN0cDPULtSYdbnEerFgcPK6EB7ITf", OvhInfra.Europe);
 
 			CredentialsResponse response = api.RequestCredential(new[]{
 				new AccessRule{ Method = "GET", Path = "/*"},
@@ -18,7 +19,12 @@ namespace OVHApi.testapp
 				//new AccessRule{ Method = "DELETE", Path = "/*"},
 			}).Result;
 
-			api.ConsumerKey = "YOUR_CONSUMER_KEY";
+            // Exemple de validation url
+			//api.ConsumerKey = "YOUR_CONSUMER_KEY";
+            //https://api.ovh.com/auth/?credentialToken=LecGwzCw5SX8oXnYcjEdTyjJgM2rRRjht8NdigznfhEmY8K4Wc71FYvnEaxlHDdJ
+            //GetSmsSenders
+            //CreateSmsJobs : POST /sms/{serviceName}/jobs
+            api.ConsumerKey = "F4ukeMubafALRbQOzMmK8mxAIRI4bA41TaLBaoMD2Pn02mzCed1wnttIgHq1dGDt";
 			try {
 
 				string[] billIds= api.GetMeBillNames(DateTime.Now.AddMonths(-5), DateTime.Now.AddMonths(-2)).Result;
