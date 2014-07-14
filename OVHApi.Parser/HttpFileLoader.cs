@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using OVHApi.Parser.Converter;
 
 namespace OVHApi.Parser
 {
@@ -14,6 +15,7 @@ namespace OVHApi.Parser
 		private readonly string[] _urls = new[]
 			                                 {
 				                                 //"https://api.ovh.com/1.0/domains.json", // fully deprecated
+                                                 //"https://api.ovh.com/1.0/order.json", // must active a customDateConverter to make it work
 				                                 "https://api.ovh.com/1.0/cdn/dedicated.json",
 				                                 "https://api.ovh.com/1.0/cdn/website.json",
 				                                 "https://api.ovh.com/1.0/cdn/webstorage.json",
@@ -34,7 +36,6 @@ namespace OVHApi.Parser
 				                                 "https://api.ovh.com/1.0/license/windows.json",
 				                                 "https://api.ovh.com/1.0/me.json",
 				                                 "https://api.ovh.com/1.0/newAccount.json",
-				                                 "https://api.ovh.com/1.0/order.json",
 				                                 "https://api.ovh.com/1.0/price.json",
 				                                 "https://api.ovh.com/1.0/sms.json",
 				                                 "https://api.ovh.com/1.0/telephony.json",
@@ -50,8 +51,15 @@ namespace OVHApi.Parser
 
 			foreach (var url in _urls)
 			{
-				string json = client.DownloadString(url);
-				apis.Add(JsonConvert.DeserializeObject<OvhApi>(json));
+                //var format = "dd/MM/yyyy"; // your datetime format
+                //var dateTimeConverter = new IsoDateTimeConverter { DateTimeFormat = format };
+
+                //var customDateConverter = new CustomDateConverter();
+                //string json = client.DownloadString(url);
+                //apis.Add(JsonConvert.DeserializeObject<OvhApi>(json, customDateConverter));
+
+                string json = client.DownloadString(url);
+                apis.Add(JsonConvert.DeserializeObject<OvhApi>(json));
 			}
 
 			return apis;

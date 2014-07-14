@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheFileLoader.cs" />
+    <Compile Include="Converter\CustomDateConverter.cs" />
     <Compile Include="HttpFileLoader.cs" />
     <Compile Include="IFileLoader.cs" />
     <Compile Include="JsonClasses.cs" />
